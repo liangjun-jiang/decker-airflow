@@ -11,9 +11,14 @@ Having properly set this, then webserver_config.py will be picked up from your a
 ```
 AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
 ```
-Now stop your container and run it again and repeat steps one and two to check what is your DB. If it is DB: `postgresql+psycopg2://airflow:***@postgres/airflow`, then you've properly setup your DB. Read on.
+Now stop your container and run it again and repeat steps one and two to check what is your DB. If it is DB: `postgresql+psycopg2://airflow:***@postgres/airflow`, then you've properly setup your DB. 
+
 5. Run `airflow initdb` to setup your persistent database.
-6. Create `admin` user by `airflow create_user -r Admin -u admin -e admin@example.com -f admin -l user -p test`
+
+6. Create `admin` user by 
+```
+airflow create_user -r Admin -u admin -e admin@example.com -f admin -l user -p test
+```
 
 # docker-airflow
 [![CircleCI](https://circleci.com/gh/puckel/docker-airflow/tree/master.svg?style=svg)](https://circleci.com/gh/puckel/docker-airflow/tree/master)
