@@ -1,16 +1,19 @@
-# [enable RBAC](https://github.com/puckel/docker-airflow/issues/225)
+# [Enable RBAC](https://github.com/puckel/docker-airflow/issues/225)
 1. Login into your container docker exec -it [container id] /bin/bash
 2. Run `airflow resetdb` and confirm if DB: `postgresql+psycopg2://airflow:***@postgres/airflow`
 If that is the case, then your problem is different than mine. If it says DB: sqllite, then read on.
 3. First make sure you've properly set `AIRFLOW_HOME` variable.
 You can set it as a config, but that is deprecated and you will get a warning
 You should set it as an environmental variable in your docker yaml file:
-```AIRFLOW_HOME=/usr/local/airflow (note there is no trailing /)```
-Having properly set this, then webserver_config.py will be picked up from your airflow home if it exists there; if not, the default value will be picked up.
+```
+AIRFLOW_HOME=/usr/local/airflow (note there is no trailing /)
+```
+Having properly set this, then `webserver_config.py` will be picked up from your airflow home if it exists there; if not, the default value will be picked up.
+
 4. Set `SQLAlchemy` connection as an environmental variable in the docker yaml file
-```
-AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
-```
+    ```
+    AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
+    ```
 Now stop your container and run it again and repeat steps one and two to check what is your DB. If it is DB: `postgresql+psycopg2://airflow:***@postgres/airflow`, then you've properly setup your DB. 
 
 5. Run `airflow initdb` to setup your persistent database.
