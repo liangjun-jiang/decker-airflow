@@ -1,5 +1,8 @@
 # [Enable RBAC](https://github.com/puckel/docker-airflow/issues/225)
-1. Login into your container docker exec -it [container id] /bin/bash
+1. Login into your container 
+```
+docker exec -it [container id] /bin/bash
+```
 2. Run `airflow resetdb` and confirm if DB: `postgresql+psycopg2://airflow:***@postgres/airflow`
 If that is the case, then your problem is different than mine. If it says DB: sqllite, then read on.
 3. First make sure you've properly set `AIRFLOW_HOME` variable.
