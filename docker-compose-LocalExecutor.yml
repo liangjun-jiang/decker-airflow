@@ -15,8 +15,10 @@ services:
         environment:
             - LOAD_EX=n
             - EXECUTOR=Local
+            - AIRFLOW__WEBSERVER__RBAC=true
         volumes:
             - ./dags:/usr/local/airflow/dags
+            - ./volumes/airflow_config/webserver_config.py:/usr/local/airflow/webserver_config.py:z
             # Uncomment to include custom plugins
             # - ./plugins:/usr/local/airflow/plugins
         ports:
