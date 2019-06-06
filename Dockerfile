@@ -73,6 +73,8 @@ RUN set -ex \
 COPY script/entrypoint.sh /entrypoint.sh
 COPY config/airflow.cfg ${AIRFLOW_HOME}/airflow.cfg
 
+ENV PYTHONPATH "${PYTHONPATH}:${AIRFLOW_HOME}"
+
 RUN chown -R airflow: ${AIRFLOW_HOME}
 
 EXPOSE 8080 5555 8793
