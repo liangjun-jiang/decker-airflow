@@ -47,8 +47,8 @@ dag.doc_md = __doc__
 
 t1 = AzureCosmosDocumentSensor(
     task_id='check_cosmos_file',
-    database_name='sample database',
-    collection_name='sample collection',
+    database_name='airflow_example_db',
+    collection_name='airflow_example_coll',
     document_id='airflow_checkid',
     azure_cosmos_conn_id='azure_cosmos_default',
     dag=dag)
@@ -56,8 +56,8 @@ t1 = AzureCosmosDocumentSensor(
 t2 = AzureCosmosInsertDocumentOperator(
     task_id='insert_cosmos_file',
     dag=dag,
-    database_name='sample database',
-    collection_name='sample collection',
+    database_name='airflow_example_db',
+    collection_name='new-collection',
     document={"id": "someuniqueid", "param1": "value1", "param2": "value2"},
     azure_cosmos_conn_id='azure_cosmos_default')
 
