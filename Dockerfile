@@ -72,6 +72,7 @@ RUN set -ex \
         /usr/share/doc-base
 
 COPY script/entrypoint.sh /entrypoint.sh
+COPY script/requirements.txt /requirements.txt
 COPY config/airflow.cfg ${AIRFLOW_HOME}/airflow.cfg
 
 ENV PYTHONPATH "${PYTHONPATH}:${AIRFLOW_HOME}"
