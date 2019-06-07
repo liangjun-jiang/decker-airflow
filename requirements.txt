@@ -1,1 +1,0 @@
-azure-cosmosdb-table==1.0.5
