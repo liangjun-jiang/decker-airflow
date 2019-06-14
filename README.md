@@ -17,11 +17,24 @@ example_azure_cosmosdb_sensor.py
 example_databricks_operator.py
 ```
 
-# [Enable RBAC](https://github.com/puckel/docker-airflow/issues/225)
+# [Set RBAC](https://github.com/puckel/docker-airflow/issues/225)
+Assumed you are running Airflow with CeleryExectutor by using the *docker compose* command:
+```
+docker-compose -f docker-compose-CeleryExecutor.yml up -d
+
+```
+
 1. Login into your container 
 ```
 docker exec -it [container id] /bin/bash
 ```
+2. Create `admin` user by 
+```
+airflow create_user -r Admin -u admin -e admin@example.com -f admin -l user -p test
+```
+
+However, there is a chance that you didn't really have PostGrepSql
+
 2. Run `airflow resetdb` and confirm if DB: `postgresql+psycopg2://airflow:***@postgres/airflow`
 If that is the case, then your problem is different than mine. If it says DB: sqllite, then read on.
 3. First make sure you've properly set `AIRFLOW_HOME` variable.
@@ -40,18 +53,8 @@ Now stop your container and run it again and repeat steps one and two to check w
 
 5. Run `airflow initdb` to setup your persistent database.
 
-6. Create `admin` user by 
-```
-airflow create_user -r Admin -u admin -e admin@example.com -f admin -l user -p test
-```
 
 # docker-airflow
-[![CircleCI](https://circleci.com/gh/puckel/docker-airflow/tree/master.svg?style=svg)](https://circleci.com/gh/puckel/docker-airflow/tree/master)
-[![Docker Build Status](https://img.shields.io/docker/build/puckel/docker-airflow.svg)]()
-
-[![Docker Hub](https://img.shields.io/badge/docker-ready-blue.svg)](https://hub.docker.com/r/puckel/docker-airflow/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/puckel/docker-airflow.svg)]()
-[![Docker Stars](https://img.shields.io/docker/stars/puckel/docker-airflow.svg)]()
 
 This repository contains **Dockerfile** of [apache-airflow](https://github.com/apache/incubator-airflow) for [Docker](https://www.docker.com/)'s [automated build](https://registry.hub.docker.com/u/puckel/docker-airflow/) published to the public [Docker Hub Registry](https://registry.hub.docker.com/).
 
