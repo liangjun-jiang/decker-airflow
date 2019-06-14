@@ -1,3 +1,22 @@
+# Important Change
+**Last Update: 06/14/2019**
+This Airflow docker image is based on *[puckel/docker-airflow](https://github.com/puckel/docker-airflow)*. I have modified a little bit to fit in the our use cases. Apparently, *puckel/docker-airflow* is quite slow in terms of *pull request*.
+The change includes:
+1. Use the latest Apache Airflow version: *[1.10.3](https://airflow.apache.org/index.html)*  
+2. Enabled Role Based Authentication Control (RBAC). See next chapter for the details how to use this feature
+3. Enabled Azure related Airflow package, specifically, `airflow[azure_blob_storage,azure_data_lake,azure_cosmos,azure_container_instances]`. Keep in mind, the way to install *azure* package in the past, as `airflow[azure]`, is deprecated.
+4. Provided same *DAGs* with Azure Cosmos DB and Azure Databricks, mounted in the line 32 of *docker-compose-CeleryExecutor.yml* 
+```
+  volumes:
+            - ./dags:/usr/local/airflow/dags
+```
+The sample DAGs includes
+```
+example_azure_container_instance_operator.py
+example_azure_cosmosdb_sensor.py
+example_databricks_operator.py
+```
+
 # [Enable RBAC](https://github.com/puckel/docker-airflow/issues/225)
 1. Login into your container 
 ```
