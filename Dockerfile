@@ -59,6 +59,7 @@ RUN set -ex \
     && pip install apache-airflow[crypto,celery,slack,gcp_api,kubernetes,hive,jdbc,azure_blob_storage,azure_data_lake,azure_cosmos,azure_container_instances,mysql,ssh${AIRFLOW_DEPS:+,}${AIRFLOW_DEPS}]==${AIRFLOW_VERSION} \
     && pip install 'redis>=2.10.5,<3' \
     && pip install 'psycopg2-binary' \
+    && pip install airflow-exporter \
     && if [ -n "${PYTHON_DEPS}" ]; then pip install ${PYTHON_DEPS}; fi \
     && apt-get purge --auto-remove -yqq $buildDeps \
     && apt-get autoremove -yqq --purge \
