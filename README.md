@@ -16,6 +16,9 @@ example_azure_container_instance_operator.py
 example_azure_cosmosdb_sensor.py
 example_databricks_operator.py
 ```
+5. Added `airflow-exporter` 
+```airflow-exporter``` is Airflow plugin to export dag and task based metrics to Prometheus.
+Visit `http://<your_airflow_host_and_port>/admin/metrics/` for the live metrics
 
 # [Set RBAC](https://github.com/puckel/docker-airflow/issues/225)
 Assumed you are running Airflow with CeleryExectutor by using the *docker compose* command:
