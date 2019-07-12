@@ -48,18 +48,15 @@ dag = DAG(
     schedule_interval='@daily')
 
 new_cluster = {
-    'spark_version': '2.1.0-db3-scala2.11',
-    'node_type_id': 'r3.xlarge',
-    'aws_attributes': {
-        'availability': 'ON_DEMAND'
-    },
-    'num_workers': 8
+    'spark_version': 'apache-spark-2.4.x-scala2.11',
+    'node_type_id': 'Standard_DS3_v2',
+    'num_workers': 2
 }
 
 notebook_task_params = {
-    'new_cluster': new_cluster,
+    'existing_cluster_id': '0712-171300-flag77',
     'notebook_task': {
-        'notebook_path': '/Users/airflow@example.com/PrepareData',
+        'notebook_path': '/Users/l0j011d@homeoffice.wal-mart.com/lj-spark-learning',
     },
 }
 # Example of using the JSON parameter to initialize the operator.
@@ -84,4 +81,4 @@ spark_jar_task = DatabricksSubmitRunOperator(
     ]
 )
 
-notebook_task.set_downstream(spark_jar_task)
+# notebook_task.set_downstream(spark_jar_task)
